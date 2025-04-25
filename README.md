@@ -1,14 +1,54 @@
 # Architecture Portfolio Application
 
-## Overview
-This application is a full-stack solution for architects to showcase their work online through a professional portfolio website. The system consists of three main components:
-- **Backend API** (Node.js)
-- **Client Frontend** (React/Vite)
-- **Admin Dashboard** (React/Vite)
+![Architecture Portfolio Banner](https://via.placeholder.com/800x200?text=Architecture+Portfolio+App)
 
-The application allows architects to manage their portfolio projects, display multiple images per project, highlight professional awards, and showcase their experience through a clean, professional interface.
+[![Issues](https://img.shields.io/github/issues/yourusername/architect-portfolio)](https://github.com/yourusername/architect-portfolio/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/yourusername/architect-portfolio)](https://github.com/yourusername/architect-portfolio/pulls)
+[![License](https://img.shields.io/github/license/yourusername/architect-portfolio)](https://github.com/yourusername/architect-portfolio/blob/main/LICENSE)
 
-## System Architecture
+## 📑 Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [System Architecture](#system-architecture)
+- [Repository Structure](#repository-structure)
+- [Installation & Setup](#installation--setup)
+- [API Documentation](#api-documentation)
+- [Database Schema](#database-schema)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+## 🏛️ Overview
+A full-stack architecture portfolio application designed for architects to showcase their professional work, achievements, and experience. The platform enables architects to manage multiple projects with image galleries, highlight awards, and present their professional journey through an elegant, user-friendly interface.
+
+**Live Demo:** [Architecture Portfolio Demo](https://your-demo-url.com)
+
+## ✨ Features
+- **Project Showcase** - Display architectural projects through multiple images per project
+- **Awards Section** - Highlight professional achievements and recognition
+- **Experience Timeline** - Document career milestones and professional history
+- **Admin Dashboard** - Easy-to-use interface for content management
+- **Responsive Design** - Optimized for all devices from mobile to desktop
+- **Image Gallery** - Professional presentation of project visuals with lightbox functionality
+
+## 🛠️ Tech Stack
+### Backend
+- Node.js
+- Express.js
+- MySQL
+- JWT Authentication
+- Multer (Image Upload)
+
+### Frontend (Client & Admin)
+- React
+- Vite
+- React Router
+- Axios
+- Modern CSS (Styled Components/Tailwind)
+
+## 🏗️ System Architecture
+The application follows a three-tier architecture:
 
 ```
                                     +----------------+
@@ -35,275 +75,84 @@ The application allows architects to manage their portfolio projects, display mu
                         +---------------+      +---------------+
 ```
 
-## Backend (Node.js + MySQL)
+## 📁 Repository Structure
+```
+architecture-portfolio/
+├── README.md
+├── LICENSE
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── bug_report.md
+│   │   └── feature_request.md
+│   └── PULL_REQUEST_TEMPLATE.md
+├── backend/
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── utils/
+│   │   └── app.js
+│   ├── package.json
+│   └── .env.example
+├── client/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── hooks/
+│   │   ├── services/
+│   │   └── App.jsx
+│   ├── package.json
+│   └── .env.example
+└── admin/
+    ├── src/
+    │   ├── assets/
+    │   ├── components/
+    │   ├── pages/
+    │   ├── hooks/
+    │   ├── services/
+    │   └── App.jsx
+    ├── package.json
+    └── .env.example
+```
 
-### Technologies
-- Node.js
-- Express.js
-- MySQL
-- Sequelize ORM (optional)
-- JWT for authentication
-- Multer for image uploads
-
-### Database Schema
-
-#### Tables
-1. **Users**
-   - id (PK)
-   - username
-   - email
-   - password (hashed)
-   - role (admin/architect)
-   - created_at
-   - updated_at
-
-2. **Projects**
-   - id (PK)
-   - title
-   - description
-   - location
-   - year_completed
-   - architect_id (FK to Users)
-   - featured (boolean)
-   - created_at
-   - updated_at
-
-3. **Project_Images**
-   - id (PK)
-   - project_id (FK to Projects)
-   - image_url
-   - caption
-   - display_order
-   - created_at
-   - updated_at
-
-4. **Awards**
-   - id (PK)
-   - title
-   - description
-   - year
-   - institution
-   - architect_id (FK to Users)
-   - created_at
-   - updated_at
-
-5. **Experience**
-   - id (PK)
-   - title
-   - description
-   - start_date
-   - end_date
-   - company
-   - architect_id (FK to Users)
-   - created_at
-   - updated_at
-
-### API Endpoints
-
-#### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - Login
-- `GET /api/auth/verify` - Verify token
-
-#### Projects
-- `GET /api/projects` - Get all projects
-- `GET /api/projects/:id` - Get project by ID
-- `POST /api/projects` - Create new project (protected)
-- `PUT /api/projects/:id` - Update project (protected)
-- `DELETE /api/projects/:id` - Delete project (protected)
-
-#### Project Images
-- `GET /api/projects/:id/images` - Get images for a project
-- `POST /api/projects/:id/images` - Upload images for a project (protected)
-- `PUT /api/projects/images/:id` - Update image details (protected)
-- `DELETE /api/projects/images/:id` - Delete an image (protected)
-
-#### Awards
-- `GET /api/awards` - Get all awards
-- `GET /api/awards/:id` - Get award by ID
-- `POST /api/awards` - Create new award (protected)
-- `PUT /api/awards/:id` - Update award (protected)
-- `DELETE /api/awards/:id` - Delete award (protected)
-
-#### Experience
-- `GET /api/experience` - Get all experience entries
-- `GET /api/experience/:id` - Get experience by ID
-- `POST /api/experience` - Create new experience (protected)
-- `PUT /api/experience/:id` - Update experience (protected)
-- `DELETE /api/experience/:id` - Delete experience (protected)
-
-## Client Frontend (React/Vite)
-
-### Technologies
-- React
-- Vite
-- React Router
-- Axios
-- React Query (optional)
-- Styled Components or Tailwind CSS
-
-### Pages/Components
-1. **Home Page**
-   - Hero section with featured projects
-   - About section
-   - Featured awards
-   - Contact information
-
-2. **Projects Page**
-   - Project grid/list
-   - Filtering options
-   - Pagination
-
-3. **Project Detail Page**
-   - Image gallery/carousel
-   - Project details
-   - Project description
-   - Related projects
-
-4. **Awards Page**
-   - List of awards with details
-   - Timeline view
-
-5. **Contact Page**
-   - Contact form
-   - Contact information
-   - Map (optional)
-
-### Features
-- Responsive design
-- Image lazy loading
-- Image gallery with lightbox
-- Filtering and sorting projects
-- Contact form
-
-## Admin Dashboard (React/Vite)
-
-### Technologies
-- React
-- Vite
-- React Router
-- Axios
-- React Query (optional)
-- Material UI or Ant Design
-
-### Pages/Components
-1. **Login Page**
-   - Authentication form
-
-2. **Dashboard Overview**
-   - Statistics
-   - Recent activity
-   - Quick actions
-
-3. **Projects Management**
-   - Create/edit/delete projects
-   - Manage project images
-   - Set featured projects
-
-4. **Awards Management**
-   - Create/edit/delete awards
-
-5. **Experience Management**
-   - Create/edit/delete experience entries
-
-6. **Profile Management**
-   - Update personal information
-   - Change password
-
-### Features
-- Protected routes
-- Form validation
-- Drag and drop image upload
-- Image preview and cropping
-- Drag and drop for reordering images
-- Rich text editor for descriptions
-
-## Deployment Architecture
-
-### Option 1: Traditional Hosting
-- Backend: Node.js application deployed on VPS or cloud provider (AWS, DigitalOcean, etc.)
-- Frontend: Static assets served from CDN or web server
-- Database: MySQL server
-- File Storage: S3 or similar service for image storage
-
-### Option 2: Containerized
-- Docker containers for backend, client, and admin applications
-- Docker Compose for local development
-- Kubernetes for production deployment (optional)
-- MySQL container or managed database service
-- Object storage for images
-
-## Security Considerations
-- JWT token auth with refresh tokens
-- Password hashing using bcrypt
-- Input validation and sanitization
-- CSRF protection
-- Rate limiting
-- Secure file uploads
-- Environment variable management
-- HTTPS enforcement
-
-## Future Enhancements
-1. **Multi-language Support**
-   - Localization for international audiences
-
-2. **Advanced Analytics**
-   - Track project views and engagement
-
-3. **Social Sharing**
-   - Share projects on social media
-
-4. **Client Collaboration**
-   - Allow clients to comment on projects
-
-5. **Advanced Search**
-   - Search functionality for projects
-
-## Development Workflow
-1. Set up development environment
-2. Implement backend API
-3. Develop admin dashboard
-4. Develop client frontend
-5. Integration testing
-6. Deployment
-
-## Installation & Setup
+## 🚀 Installation & Setup
 
 ### Prerequisites
 - Node.js (v16+)
-- MySQL
+- MySQL (v8+)
 - Git
 
-### Backend Setup
+### Quick Start
+
+1. **Clone the repository**
 ```bash
-# Clone the repository
 git clone https://github.com/yourusername/architect-portfolio.git
-cd architect-portfolio/backend
+cd architect-portfolio
+```
 
-# Install dependencies
+2. **Backend Setup**
+```bash
+cd backend
 npm install
-
-# Set up environment variables
 cp .env.example .env
 # Edit .env with your database credentials
-
-# Run migrations
 npm run migrate
-
-# Start development server
 npm run dev
 ```
 
-### Frontend Setup (Client & Admin)
+3. **Client Frontend Setup**
 ```bash
-# Client
 cd ../client
 npm install
 cp .env.example .env
 # Edit .env with API URL
 npm run dev
+```
 
-# Admin
+4. **Admin Dashboard Setup**
+```bash
 cd ../admin
 npm install
 cp .env.example .env
@@ -311,8 +160,156 @@ cp .env.example .env
 npm run dev
 ```
 
-## Contributing
-Please read the CONTRIBUTING.md file for details on our code of conduct and the process for submitting pull requests.
+### Environment Variables
 
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+#### Backend (.env)
+```
+NODE_ENV=development
+PORT=3000
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=password
+DB_NAME=architect_portfolio
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRY=24h
+```
+
+#### Frontend (.env)
+```
+VITE_API_URL=http://localhost:3000/api
+```
+
+## 📚 API Documentation
+
+### Authentication
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|--------------|
+| POST | /api/auth/register | Register new user | No |
+| POST | /api/auth/login | Login | No |
+| GET | /api/auth/verify | Verify token | Yes |
+
+### Projects
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|--------------|
+| GET | /api/projects | Get all projects | No |
+| GET | /api/projects/:id | Get project by ID | No |
+| POST | /api/projects | Create new project | Yes |
+| PUT | /api/projects/:id | Update project | Yes |
+| DELETE | /api/projects/:id | Delete project | Yes |
+
+### Project Images
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|--------------|
+| GET | /api/projects/:id/images | Get images for a project | No |
+| POST | /api/projects/:id/images | Upload images for a project | Yes |
+| PUT | /api/projects/images/:id | Update image details | Yes |
+| DELETE | /api/projects/images/:id | Delete an image | Yes |
+
+### Awards
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|--------------|
+| GET | /api/awards | Get all awards | No |
+| GET | /api/awards/:id | Get award by ID | No |
+| POST | /api/awards | Create new award | Yes |
+| PUT | /api/awards/:id | Update award | Yes |
+| DELETE | /api/awards/:id | Delete award | Yes |
+
+### Experience
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|--------------|
+| GET | /api/experience | Get all experience entries | No |
+| GET | /api/experience/:id | Get experience by ID | No |
+| POST | /api/experience | Create new experience | Yes |
+| PUT | /api/experience/:id | Update experience | Yes |
+| DELETE | /api/experience/:id | Delete experience | Yes |
+
+## 💾 Database Schema
+
+### Users
+| Column | Type | Description |
+|--------|------|-------------|
+| id | INT | Primary Key |
+| username | VARCHAR(255) | Unique username |
+| email | VARCHAR(255) | Unique email |
+| password | VARCHAR(255) | Hashed password |
+| role | ENUM | 'admin' or 'architect' |
+| created_at | DATETIME | Creation timestamp |
+| updated_at | DATETIME | Update timestamp |
+
+### Projects
+| Column | Type | Description |
+|--------|------|-------------|
+| id | INT | Primary Key |
+| title | VARCHAR(255) | Project title |
+| description | TEXT | Project description |
+| location | VARCHAR(255) | Project location |
+| year_completed | INT | Year project was completed |
+| architect_id | INT | Foreign Key to Users |
+| featured | BOOLEAN | Is project featured |
+| created_at | DATETIME | Creation timestamp |
+| updated_at | DATETIME | Update timestamp |
+
+### Project_Images
+| Column | Type | Description |
+|--------|------|-------------|
+| id | INT | Primary Key |
+| project_id | INT | Foreign Key to Projects |
+| image_url | VARCHAR(255) | Image URL/path |
+| caption | VARCHAR(255) | Image caption |
+| display_order | INT | Order in gallery |
+| created_at | DATETIME | Creation timestamp |
+| updated_at | DATETIME | Update timestamp |
+
+### Awards
+| Column | Type | Description |
+|--------|------|-------------|
+| id | INT | Primary Key |
+| title | VARCHAR(255) | Award title |
+| description | TEXT | Award description |
+| year | INT | Year received |
+| institution | VARCHAR(255) | Awarding institution |
+| architect_id | INT | Foreign Key to Users |
+| created_at | DATETIME | Creation timestamp |
+| updated_at | DATETIME | Update timestamp |
+
+### Experience
+| Column | Type | Description |
+|--------|------|-------------|
+| id | INT | Primary Key |
+| title | VARCHAR(255) | Position title |
+| description | TEXT | Experience description |
+| start_date | DATE | Start date |
+| end_date | DATE | End date or NULL for current |
+| company | VARCHAR(255) | Company name |
+| architect_id | INT | Foreign Key to Users |
+| created_at | DATETIME | Creation timestamp |
+| updated_at | DATETIME | Update timestamp |
+
+## 👥 Contributing
+We welcome contributions from the community! Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting a pull request.
+
+### Branch Organization
+- `main` - Production-ready code
+- `develop` - Development branch for feature integration
+- `feature/*` - Feature branches
+- `bugfix/*` - Bug fix branches
+- `release/*` - Release preparation branches
+
+### Issues
+When creating an issue, please use the provided templates:
+- **Bug Report**: For reporting bugs
+- **Feature Request**: For suggesting new features
+
+### Pull Requests
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request using the PR template
+
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+⭐ **Star this repo if you find it useful!** ⭐
